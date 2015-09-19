@@ -1,0 +1,15 @@
+.main-form{
+
+    padding:30px;
+}
+.fieldset{
+    margin: 10px 0 0 10px;
+}
+.editable td{
+    width: 45px;
+}
+a{
+    text-decoration: none;
+    color:black;
+
+}
