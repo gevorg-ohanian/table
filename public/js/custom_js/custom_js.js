@@ -15,17 +15,14 @@ $('document').ready(function(){
 
     $('body').on('focusout','.edit',function(){
         var $id = $(this).closest('tr').attr('data-id');
-        //var $name = $(this).parent().attr('data-name');
-        //console.log($id);
+        var $name = $(this).parent().attr('data-name');
+        //console.log($(this).val());
         //var str = '{'+$id+'}';
         //console.log(str);
         $.ajax({
-            url:"/"+$id,
-            method:"put/patch",
-            data:$(this).val()
-
-        }).done(function(response){
-            console.log(response);
+            url:"/asd/"+$id,
+            method:"PUT",
+            data:{value:$(this).val(), name:$name}
         });
         //    .done(function(response){
         // console.log(response);

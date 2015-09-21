@@ -16,6 +16,6 @@
 //	return View::make('main_page');
 //});
 
-Route::resource('/','MainController');
+Route::resource('/asd','MainController');
 Route::get('/others','MainController@getAll');
-Route::resource('/{id}/','MainController');
+Route::get('/','MainController@index');

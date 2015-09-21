@@ -12,10 +12,14 @@ class MainController extends BaseController
 
     }
 
-    public function Itemupdate($id)
+    public function update($id)
     {
-        dd($id);
-        //return View::make('/hello');
+        $input = Input::all();
+        $input['name'] = 'others_'.$input['name'];
+        //dd($input);
+        $other = Other::where('others_id','=',$id)->update(array($input['name']=>$input['value']));
+        dd($other);
+
     }
 
     public function show($id)
@@ -26,6 +30,7 @@ class MainController extends BaseController
     public function getAll()
     {
         $data = Other::all();
+        //dd($data);
         //$others = $data->all();
         return $data;
     }

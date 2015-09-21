@@ -4,14 +4,15 @@ class Other extends User {
     protected $table = 'others';
 
     public static $rules = array(
-        'others_email'=>'alpha',
-        'others_name'=>'alpha',
-        'others_surname'=>'alpha',
-        'others_country'=>'alpha',
-        'others_city'=>'alpha'
+        'email'=>'alpha',
+        'name'=>'alpha',
+        'surname'=>'alpha',
+        'country'=>'alpha',
+        'city'=>'alpha'
     );
 
     protected $fillable = array(
+
         'others_email',
         'others_name',
         'others_surname',
