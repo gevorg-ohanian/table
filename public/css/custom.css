@@ -11,5 +11,49 @@
 a{
     text-decoration: none;
     color:black;
+}
+span.error{
+    margin-left: 10px;
+    color:red;
 
+}
+#custom-modal{
+    opacity: 0;
+    overflow:hidden;
+    position:fixed;
+    width:600px;
+    height:0;
+    background: rgba(245, 245, 245,0.95);
+    margin-top:-100px;
+    margin-left:-300px;
+    top: 0;
+    left:50%;
+    z-index: 5;
+    padding: 20px 10px;
+    display: none;
+}
+#overlay{
+    z-index: 3;
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: .8;
+    display: none;
+}
+#close-modal{
+    background:#ccc;
+    float:right;
+    font-size: 21px;
+    color:black;
+    padding:10px 20px;
+    margin-top: -10px;
+    margin-right: -5px;
+    cursor: pointer;
+    border-radius: 30%;
+}
+#close-modal:before{
+    content: 'X';
 }

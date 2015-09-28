@@ -17,5 +17,6 @@
 //});
 
 Route::resource('/asd','MainController');
-Route::get('/others','MainController@getAll');
 Route::get('/','MainController@index');
+Route::get('/others','MainController@getAll');
+Route::get('/modal','MainController@showModal');

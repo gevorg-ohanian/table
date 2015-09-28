@@ -2,6 +2,7 @@
 class Other extends User {
 
     protected $table = 'others';
+    protected $primaryKey = 'others_id';
 
     public static $rules = array(
         'email'=>'alpha',
@@ -19,4 +20,6 @@ class Other extends User {
         'others_country',
         'others_city'
     );
+
+
 }

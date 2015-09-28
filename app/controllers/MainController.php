@@ -1,10 +1,27 @@
 <?php
 class MainController extends BaseController
 {
+
+    private $column_list = array(
+        'others_id',
+        'others_email',
+        'others_name',
+        'others_surname',
+        'others_country',
+        'others_city'
+    );
     public function index()
     {
-        $others = $this->getAll();
-        return View::make('/main_page')->with('others',$others);
+        $sort = false;
+
+        if(Input::get('sort_by'))
+        {
+            $sort = Input::get('sort_by');
+        }
+
+        $others = $this->getAll($sort);
+        return View::make('/main_page')->with('others',$others)->
+            with('sort_by', $sort);
     }
 
     public function edit($id)
@@ -15,10 +32,16 @@ class MainController extends BaseController
     public function update($id)
     {
         $input = Input::all();
-        $input['name'] = 'others_'.$input['name'];
-        //dd($input);
-        $other = Other::where('others_id','=',$id)->update(array($input['name']=>$input['value']));
-        dd($other);
+        if($input['value']==''){
+          $input['value']=Other::where('others_id','=',$id)->get(array($input['name']));
+            return $input['value'];
+        }
+        else {
+            $other = Other::where('others_id','=',$id)->update(array($input['name']=>$input['value']));
+            $val = Other::where('others_id','=',$id)->get(array($input['name']));
+            return json_encode($val);
+
+        }
 
     }
 
@@ -27,11 +50,15 @@ class MainController extends BaseController
 
     }
 
-    public function getAll()
+    public function getAll($sort)
     {
-        $data = Other::all();
-        //dd($data);
-        //$others = $data->all();
-        return $data;
+        $pagination = ($sort) ? Other::orderBy($sort)->paginate(2,$this->column_list) : Other::paginate(2,$this->column_list);
+        return $pagination;
     }
+
+    public function showModal()
+    {
+        return View::make('modals.modal');
+    }
+
 }

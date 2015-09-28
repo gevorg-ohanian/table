@@ -14,31 +14,36 @@
             <link href="/css/custom.css" rel="stylesheet" type="text/css">
         </head>
         <body>
-            <div class="main-form">
-                <table class="table table-striped">
+
+            <div class="main-form" id="main-form">
+                <table class="custom-table table table-striped" id="main-table">
                     <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>Email</th>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Country</th>
-                            <th>City</th>
+                        <tr data-name="sortable">
+                            <th></th>
+                            <th><a href="#" data-href="others_id">User ID</a></th>
+                            <th><a href="#" data-href="others_email">Email</a></th>
+                            <th><a href="#" data-href="others_name">Name</a></th>
+                            <th><a href="#" data-href="others_surname">Surname</a></th>
+                            <th><a href="#" data-href="others_country">Country</a></th>
+                            <th><a href="#" data-href="others_city">City</a></th>
                         </tr>
                     </thead>
-                    <tbody class="editable">
+                    <tbody>
                     @foreach($others as $other)
-                        <tr data-id="{{$other['others_id']}}">
-                            <td data-name="id"><span>{{$other['others_id']}}</span></td>
-                            <td data-name="email"><span class="name">{{$other['others_email']}}</span></td>
-                            <td data-name="name"><span class="name">{{$other['others_name']}}</span></td>
-                            <td data-name="surname"><span class="name">{{$other['others_surname']}}</span></td>
-                            <td data-name="country"><span class="name">{{$other['others_country']}}</span></td>
-                            <td data-name="city"><span class="name">{{$other['others_city']}}</span></td>
+                        <tr data-id="{{$other->others_id}}" data-tr-name="editable">
+                            <td><input type="checkbox" name="delete" value="{{$other->others_id}}"></td>
+                            @foreach($other['attributes'] as $key=>$value)
+                                <td data-name="{{$key}}"><span class="name">{{$value}}</span></td>
+                            @endforeach
+                            <td class="del"><button class="delete btn btn-primary btn-sm active" type="button">Delete Row</button>
+                                <button class="editor btn btn-primary btn-sm active" data-id="{{$other->others_id}}" type="button">Edit Row</button></td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
+            {{$others->appends(array('sort_by' => $sort_by))->links()}}
+
         </body>
     </html>

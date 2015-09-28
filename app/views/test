@@ -1,0 +1,8 @@
+<tr data-id="{{$other['others_id']}}">
+                            <td data-name="id"><input type="checkbox" name="delete"><span>{{$other['others_id']}}</span></td>
+                            <td data-name="email"><span class="name">{{$other['others_email']}}</span></td>
+                            <td data-name="name"><span class="name">{{$other['others_name']}}</span></td>
+                            <td data-name="surname"><span class="name">{{$other['others_surname']}}</span></td>
+                            <td data-name="country"><span class="name">{{$other['others_country']}}</span></td>
+                            <td data-name="city"><span class="name">{{$other['others_city']}}</span></td>
+                        </tr>
