@@ -48,7 +48,7 @@ $('document').ready(function(){
                 'class':'error'
             }).appendTo($(this).parent());
             $parent.addClass('danger');
-            }
+        }
     });
 
 
@@ -95,18 +95,68 @@ $('document').ready(function(){
     });
 
 
-        $('body').on('click', '#close-modal',function () {
-            var $modal = '#custom-modal';
-            var $overlay = '#overlay';
-            modalClose($modal,$overlay);
-        });
-
-
-    $('a[data-href]').on('click',function(e){
-        var $val = $(this).data('href');
-        var $href = '/?sort_by=' + $val;
-        $(this).attr('href',$href);
+    $('body').on('click', '#close-modal',function () {
+        var $modal = '#custom-modal';
+        var $overlay = '#overlay';
+        modalClose($modal,$overlay);
     });
 
+
+    //$('a[data-href]').on('click',function(e){
+    //    var $val = $(this).data('href');
+    //    var $href = '/?sort_by=' + $val;
+    //    $(this).attr('href',$href);
+    //});
+
+    //$('#baseHead').on('click', function () {
+    //
+    //   var $table = $(this).closest('table').find('#baseTable>tr');
+    //
+    //})
+
+        var $tr = $('#baseTable tr');
+        var limit = 1;
+        var length = $tr.length;
+        $.each($tr, function (index,value) {
+        var _this = $(this);
+       if(index<limit){
+           _this.show().addClass('itemIndex');
+       }
+        else{
+          _this.hide();
+       }
+        });
+
+    $('#next').on('click', function () {
+
+        var $tr =  $('#baseTable .itemIndex');
+        var $index = $tr.last().index();
+
+        $.each($('#baseTable tr'), function (index, value) {
+            var _this = $(this);
+            if(index <(limit+$index+1)&&index > $index){
+                _this.show().addClass('itemIndex');
+            }
+            else{
+                _this.hide();
+            }
+        });
+    });
+    $('#previous').on('click', function () {
+
+        var $tr =  $('#baseTable .itemIndex');
+        var $index = $tr.last().index();
+        console.log($index);
+        $.each($('#baseTable tr'), function (index, value) {
+            var _this = $(this);
+            console.log(index);
+            //if(index <(limit+$index)&&index > $index+1){
+            //    _this.hide().removeClass('itemIndex');
+            //}
+            //else{
+            //    _this.show();
+            //}
+        });
+    });
 });
 

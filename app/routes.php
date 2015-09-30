@@ -20,3 +20,4 @@ Route::resource('/asd','MainController');
 Route::get('/','MainController@index');
 Route::get('/others','MainController@getAll');
 Route::get('/modal','MainController@showModal');
+Route::resource('/another','AnotherController');

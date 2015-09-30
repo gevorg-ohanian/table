@@ -1,5 +1,12 @@
 <?php
-class MainController extends BaseController
+
+/**
+ * Created by PhpStorm.
+ * User: Grigor
+ * Date: 28.09.2015
+ * Time: 16:25
+ */
+class AnotherController extends BaseController
 {
 
     private $column_list = array(
@@ -20,8 +27,8 @@ class MainController extends BaseController
         }
 
         $others = $this->getAll($sort);
-        return View::make('/main_page')->with('others',$others)
-        ->with('sort_by', $sort);
+        return View::make('/another')->with('others',$others)
+            ->with('sort_by', $sort);
     }
 
     public function edit($id)
@@ -33,7 +40,7 @@ class MainController extends BaseController
     {
         $input = Input::all();
         if($input['value']==''){
-          $input['value']=Other::where('others_id','=',$id)->get(array($input['name']));
+            $input['value']=Other::where('others_id','=',$id)->get(array($input['name']));
             return $input['value'];
         }
         else {
@@ -60,5 +67,6 @@ class MainController extends BaseController
     {
         return View::make('modals.modal');
     }
+
 
 }
