@@ -30,10 +30,10 @@
         </thead>
         <tbody id="baseTable">
         @foreach($others as $other)
-            <tr data-id="{{$other->others_id}}" data-tr-name="editable">
+            <tr id="{{$other->others_id}}" data-tr-name="editable">
                 <td><input type="checkbox" name="delete" value="{{$other->others_id}}"></td>
                 @foreach($other['attributes'] as $key=>$value)
-                    <td data-name="{{$key}}"><span class="name">{{$value}}</span></td>
+                    <td class="{{$key}}"><span class="name">{{$value}}</span></td>
                 @endforeach
                 <td class="del"><button class="delete btn btn-primary btn-sm active" type="button">Delete Row</button>
                     <button class="editor btn btn-primary btn-sm active" data-id="{{$other->others_id}}" type="button">Edit Row</button></td>
